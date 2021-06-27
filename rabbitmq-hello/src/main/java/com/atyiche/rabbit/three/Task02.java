@@ -15,7 +15,8 @@ public class Task02 {
     public static void main(String[] argv) throws Exception {
         try (Channel channel = RabbitUtils.getChannel()) {
             //参数2创建队列的时候持久化队列
-            channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
+            boolean durable = true;//声明队列持久化
+            channel.queueDeclare(TASK_QUEUE_NAME, durable, false, false, null);
             Scanner sc = new Scanner(System.in);
             System.out.println("请输入信息");
             while (sc.hasNext()) {
